@@ -13,9 +13,14 @@
     "index.js",
     "src"
   ],
-  "dependencies": {
-    "@google-cloud/logging": "^7.3.0",
+  "devDependencies": {
     "mocha": "^7.1.2"
+  },
+  "dependencies": {
+    "@google-cloud/logging": "^7.3.0"
+  },
+  "peerDependencies": {
+    "mocha": "^6"
   },
   "scripts": {
     "test": "mocha test/*-tests.js --reporter min"
