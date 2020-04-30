@@ -9,13 +9,18 @@ const {
   EVENT_TEST_PASS,
 } = Mocha.Runner.constants;
 
-function StackdriverMochaReporter(runner) {
+function StackdriverMochaReporter(runner, options) {
   const result = {
     passes: [],
     failures: [],
   };
+  
+  const { reporterOptions } = options;
 
-  const logger = new CloudLogger();
+  const logger = new CloudLogger(
+    reporterOptions && reporterOptions.projectId,
+    reporterOptions && reporterOptions.logName
+  );
 
   runner
     .on(EVENT_TEST_PASS, (test) => {
