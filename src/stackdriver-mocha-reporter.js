@@ -10,14 +10,15 @@ const {
 } = Mocha.Runner.constants;
 
 function StackdriverMochaReporter(runner, options) {
-  const { projectId, logName } = ensureOptions(options.reporterOptions);
+  const { reporterOptions } = options;
+  const { projectId, logName } = ensureOptions(reporterOptions);
+
+  const log = new CloudLogger(projectId, logName);
 
   const result = {
     passes: [],
     failures: [],
   };
-
-  const log = new CloudLogger(projectId, logName);
 
   runner
     .on(EVENT_TEST_PASS, (test) => {
@@ -26,12 +27,15 @@ function StackdriverMochaReporter(runner, options) {
     .on(EVENT_TEST_FAIL, (test, err) => {
       result.failures.push({
         test: test.fullTitle(),
-        message: err.message
+        message: err.message,
       });
     })
     .once(EVENT_RUN_END, () => {
       if (result.failures.length > 0) log.error(result);
       else log.info(result);
+
+      if (reporterOptions.alsoConsole)
+        console.log("result", JSON.stringify(result));
     });
 }
 
