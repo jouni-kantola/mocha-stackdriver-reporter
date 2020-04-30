@@ -5,6 +5,10 @@
   "main": "index.js",
   "author": "Jouni Kantola <jouni@kantola.se>",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jouni-kantola/mocha-stackdriver-reporter/issues"
+  },
+  "homepage": "https://github.com/jouni-kantola/mocha-stackdriver-reporter",
   "dependencies": {
     "@google-cloud/logging": "^7.3.0",
     "mocha": "^7.1.2"
