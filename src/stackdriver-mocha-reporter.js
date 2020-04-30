@@ -27,7 +27,10 @@ function StackdriverMochaReporter(runner, options) {
       result.passes.push(test.fullTitle());
     })
     .on(EVENT_TEST_FAIL, (test, err) => {
-      result.failures.push([test.fullTitle(), err.message]);
+      result.failures.push({
+        test: test.fullTitle(),
+        message: err.message
+      });
     })
     .once(EVENT_RUN_END, () => {
       if (result.failures.length) logger.fail(result);
