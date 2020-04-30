@@ -1,5 +1,5 @@
 {
-  "name": "stackdriver-mocha-reporter",
+  "name": "mocha-stackdriver-reporter",
   "version": "0.0.1",
   "description": "Mocha reporter using the Google Cloud logging API",
   "main": "index.js",

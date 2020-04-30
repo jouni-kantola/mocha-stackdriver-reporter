@@ -9,7 +9,7 @@ const {
   EVENT_TEST_PASS,
 } = Mocha.Runner.constants;
 
-function StackdriverMochaReporter(runner, options) {
+function StackdriverReporter(runner, options) {
   const { reporterOptions } = options;
   const { projectId, logName } = ensureOptions(reporterOptions);
 
@@ -62,4 +62,4 @@ Example: --reporter-options projectId=myGcpProjectId,logName=myLog
   };
 }
 
-module.exports = StackdriverMochaReporter;
+module.exports = StackdriverReporter;

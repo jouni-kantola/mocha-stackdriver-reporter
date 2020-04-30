@@ -1,4 +1,4 @@
-# Stackdriver Mocha Reporter
+# Mocha Stackdriver Reporter
 
 Mocha reporter using the Google Cloud logging API
 

@@ -1,3 +1,1 @@
-const reporter = require("./src/stackdriver-mocha-reporter");
-
-module.exports = reporter;
+module.exports = require("./src/reporter");
