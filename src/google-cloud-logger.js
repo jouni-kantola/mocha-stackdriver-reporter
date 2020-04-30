@@ -16,13 +16,8 @@ class CloudLogger {
   async info(message) {
     console.log("info", JSON.stringify(message));
 
-    // The metadata associated with entries
-    const metadata = {
-      resource: { type: "global" },
-    };
-
     // Prepares a log entry
-    const entry = this.log.entry(metadata, message);
+    const entry = this.log.entry(message);
 
     // Writes the log entry
     await this.log.info(entry);
@@ -31,13 +26,8 @@ class CloudLogger {
   async error(message) {
     console.error("error", JSON.stringify(message));
 
-    // The metadata associated with entries
-    const metadata = {
-      resource: { type: "global" },
-    };
-
     // Prepares a log entry
-    const entry = this.log.entry(metadata, message);
+    const entry = this.log.entry(message);
 
     // Writes the log entry
     await this.log.error(entry);
