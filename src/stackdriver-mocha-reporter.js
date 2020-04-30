@@ -17,7 +17,7 @@ function StackdriverMochaReporter(runner, options) {
   
   const { reporterOptions } = options;
 
-  const logger = new CloudLogger(
+  const log = new CloudLogger(
     reporterOptions && reporterOptions.projectId,
     reporterOptions && reporterOptions.logName
   );
@@ -33,8 +33,8 @@ function StackdriverMochaReporter(runner, options) {
       });
     })
     .once(EVENT_RUN_END, () => {
-      if (result.failures.length) logger.fail(result);
-      else logger.success(result);
+      if (result.failures.length > 0) log.error(result);
+      else log.info(result);
     });
 }
 

@@ -13,8 +13,8 @@ class CloudLogger {
     this.log = logging.log(logName);
   }
 
-  async success(result) {
-    console.log("success", `${JSON.stringify(result)}`);
+  async info(message) {
+    console.log("info", JSON.stringify(message));
 
     // The metadata associated with entries
     const metadata = {
@@ -22,14 +22,14 @@ class CloudLogger {
     };
 
     // Prepares a log entry
-    const entry = this.log.entry(metadata, result);
+    const entry = this.log.entry(metadata, message);
 
     // Writes the log entry
     await this.log.info(entry);
   }
 
-  async fail(result) {
-    console.error("fail", `${JSON.stringify(result)}`);
+  async error(message) {
+    console.error("error", JSON.stringify(message));
 
     // The metadata associated with entries
     const metadata = {
@@ -37,7 +37,7 @@ class CloudLogger {
     };
 
     // Prepares a log entry
-    const entry = this.log.entry(metadata, result);
+    const entry = this.log.entry(metadata, message);
 
     // Writes the log entry
     await this.log.error(entry);
