@@ -16,7 +16,7 @@ class StackdriverMochaReporter {
       failures: [],
     };
 
-    const logger = CloudLogger();
+    const logger = new CloudLogger();
 
     runner
       .on(EVENT_TEST_PASS, (test) => {
