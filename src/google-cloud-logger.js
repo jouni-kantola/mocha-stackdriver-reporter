@@ -17,23 +17,23 @@ const CloudLogger = (
   };
 
   async function success(result) {
+    console.log("success", `${JSON.stringify(result)}`);
+
     // Prepares a log entry
     const entry = log.entry(metadata, result);
 
     // Writes the log entry
     await log.info(entry);
-
-    console.log("Logged", `${JSON.stringify(result)}`);
   }
 
   async function fail(result) {
+    console.error("fail", `${JSON.stringify(result)}`);
+
     // Prepares a log entry
     const entry = log.entry(metadata, result);
 
     // Writes the log entry
     await log.error(entry);
-
-    console.log("Logged", `${JSON.stringify(result)}`);
   }
 
   return {
