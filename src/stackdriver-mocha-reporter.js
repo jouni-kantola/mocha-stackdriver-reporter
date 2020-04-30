@@ -1,6 +1,8 @@
 "use strict";
 
 const Mocha = require("mocha");
+const CloudLogger = require("./google-cloud-logger");
+
 const {
   EVENT_RUN_END,
   EVENT_TEST_FAIL,
@@ -13,7 +15,9 @@ class StackdriverMochaReporter {
       passes: [],
       failures: [],
     };
-    
+
+    const logger = CloudLogger();
+
     runner
       .on(EVENT_TEST_PASS, (test) => {
         result.passes.push(test.fullTitle());
@@ -22,8 +26,8 @@ class StackdriverMochaReporter {
         result.failures.push([test.fullTitle(), err.message]);
       })
       .once(EVENT_RUN_END, () => {
-        console.log('passed', `${result.passes.length}/${result.passes.length + result.failures.length}`);
-        console.dir(result);
+        if (result.failures.length) logger.fail(result);
+        else logger.success(result);
       });
   }
 }
