@@ -2,10 +2,7 @@
 const { Logging } = require("@google-cloud/logging");
 
 class CloudLogger {
-  constructor(
-    projectId = "YOUR_PROJECT_ID", // Your Google Cloud Platform project ID
-    logName = "my-log" // The name of the log to write to
-  ) {
+  constructor(projectId, logName) {
     // Creates a client
     const logging = new Logging({ projectId });
 
