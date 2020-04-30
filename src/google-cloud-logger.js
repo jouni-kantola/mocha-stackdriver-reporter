@@ -11,8 +11,6 @@ class CloudLogger {
   }
 
   async info(message) {
-    console.log("info", JSON.stringify(message));
-
     // Prepares a log entry
     const entry = this.log.entry(message);
 
@@ -21,8 +19,6 @@ class CloudLogger {
   }
 
   async error(message) {
-    console.error("error", JSON.stringify(message));
-
     // Prepares a log entry
     const entry = this.log.entry(message);
 
