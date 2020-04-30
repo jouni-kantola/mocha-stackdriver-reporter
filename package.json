@@ -6,6 +6,7 @@
   "author": "Jouni Kantola <jouni@kantola.se>",
   "license": "MIT",
   "dependencies": {
+    "@google-cloud/logging": "^7.3.0",
     "mocha": "^7.1.2"
   },
   "scripts": {
