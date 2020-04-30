@@ -9,7 +9,7 @@ const {
   EVENT_TEST_PASS,
 } = Mocha.Runner.constants;
 
-function StackdriverReporter(runner, options) {
+function StackdriverReporter(runner, options = {}) {
   const { reporterOptions } = options;
   const { projectId, logName } = ensureOptions(reporterOptions);
 
@@ -45,13 +45,14 @@ function ensureOptions(reporterOptions) {
     !reporterOptions.projectId ||
     !reporterOptions.logName
   ) {
-    console.error(`
-Error: Required reporter options not set.
+    const errorMessage = `
+Required reporter options not set.
 Please, supply Google Cloud Platform project ID and log name.
 Example: --reporter-options projectId=myGcpProjectId,logName=myLog
-`);
+`;
+    console.error("Error:", errorMessage);
 
-    return undefined;
+    throw new Error(errorMessage);
   }
 
   const { projectId, logName } = reporterOptions;
