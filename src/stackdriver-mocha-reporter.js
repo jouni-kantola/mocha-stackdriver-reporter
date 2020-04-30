@@ -9,27 +9,25 @@ const {
   EVENT_TEST_PASS,
 } = Mocha.Runner.constants;
 
-class StackdriverMochaReporter {
-  constructor(runner) {
-    const result = {
-      passes: [],
-      failures: [],
-    };
+function StackdriverMochaReporter(runner) {
+  const result = {
+    passes: [],
+    failures: [],
+  };
 
-    const logger = new CloudLogger();
+  const logger = new CloudLogger();
 
-    runner
-      .on(EVENT_TEST_PASS, (test) => {
-        result.passes.push(test.fullTitle());
-      })
-      .on(EVENT_TEST_FAIL, (test, err) => {
-        result.failures.push([test.fullTitle(), err.message]);
-      })
-      .once(EVENT_RUN_END, () => {
-        if (result.failures.length) logger.fail(result);
-        else logger.success(result);
-      });
-  }
+  runner
+    .on(EVENT_TEST_PASS, (test) => {
+      result.passes.push(test.fullTitle());
+    })
+    .on(EVENT_TEST_FAIL, (test, err) => {
+      result.failures.push([test.fullTitle(), err.message]);
+    })
+    .once(EVENT_RUN_END, () => {
+      if (result.failures.length) logger.fail(result);
+      else logger.success(result);
+    });
 }
 
 module.exports = StackdriverMochaReporter;
