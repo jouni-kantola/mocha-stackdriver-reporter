@@ -31,11 +31,13 @@ function StackdriverReporter(runner, options = {}) {
       });
     })
     .once(EVENT_RUN_END, () => {
+      if (reporterOptions.alsoConsole || reporterOptions.onlyConsole)
+        console.log("result", JSON.stringify(result));
+
+      if (!reporterOptions.onlyConsole) {
       if (result.failures.length > 0) log.error(result);
       else log.info(result);
-
-      if (reporterOptions.alsoConsole)
-        console.log("result", JSON.stringify(result));
+      }
     });
 }
 

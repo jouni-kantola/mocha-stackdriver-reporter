@@ -24,5 +24,6 @@ mocha.reporter(StackdriverReporter, {
   projectId: "myGcpProjectId",
   logName: "myLogName",
   alsoConsole: false // (optional) if true, also output result to console
+  onlyConsole: false // (optional) if true, only output result to console
 });
 ```
