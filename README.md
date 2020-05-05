@@ -2,6 +2,8 @@
 
 Mocha reporter using the Google Cloud Logging API.
 
+![npm cit](https://github.com/jouni-kantola/mocha-stackdriver-reporter/workflows/npm%20cit/badge.svg)
+
 ## Install
 
 `npm install mocha-stackdriver-reporter --save-dev`
