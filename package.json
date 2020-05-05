@@ -23,6 +23,7 @@
     "mocha": "^6"
   },
   "scripts": {
-    "test": "mocha test/*-tests.js --reporter min"
+    "test": "mocha test/*-tests.js --reporter min",
+    "dryrun": "mocha test/*-tests.js --reporter index.js"
   }
 }
