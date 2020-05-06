@@ -13,6 +13,7 @@ function StackdriverReporter(runner, options = {}) {
   const { reporterOptions } = options;
   const { projectId, logName } = ensureOptions(reporterOptions);
 
+  Mocha.reporters.Base.call(this, runner, options);
   const log = new CloudLogger(projectId, logName);
 
   const result = {
@@ -64,5 +65,8 @@ Example: --reporter-options projectId=myGcpProjectId,logName=myLog
     logName,
   };
 }
+
+
+Mocha.utils.inherits(StackdriverReporter, Mocha.reporters.Base);
 
 module.exports = StackdriverReporter;
