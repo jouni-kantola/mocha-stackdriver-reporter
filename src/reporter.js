@@ -77,9 +77,10 @@ function getEntryMetadata(reporterOptions) {
 
   const entryMetadata = reporterOptions["entry-metadata"];
 
-  if (typeof entryMetadata === "string" || typeof entryMetadata === "object") {
-    if (typeof entryMetadata === "string") return JSON.parse(entryMetadata);
-    else return entryMetadata;
+  if (typeof entryMetadata === "string") {
+    return JSON.parse(entryMetadata);
+  } else if (typeof entryMetadata === "object") {
+    return entryMetadata;
   } else {
     const errorMessage = `
 Reporter option 'entry-metadata' cannot be parsed to JSON.
