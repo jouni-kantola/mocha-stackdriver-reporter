@@ -4,6 +4,14 @@ const Mocha = require("mocha");
 const StackdriverReporter = require("../");
 
 describe("StackdriverReporter", function () {
+  beforeEach(function () {
+    delete process.env.ENTRY_METADATA;
+  });
+
+  afterEach(function () {
+    delete process.env.ENTRY_METADATA;
+  });
+
   it("projectId and logName options required", function () {
     assert.throws(
       StackdriverReporter,
@@ -53,6 +61,33 @@ describe("StackdriverReporter", function () {
         projectId: "my-project",
         logName: "my-log",
         entryMetadata,
+      },
+    };
+
+    const runner = new Mocha().run(done);
+
+    new StackdriverReporter(runner, options);
+  });
+
+  it("specify entry metadata as environment variable", (done) => {
+    const entryMetadata = JSON.stringify({
+      resource: {
+        labels: {
+          function_name: "my-cloud-function",
+          project_id: "my-project",
+          region: "my-region",
+        },
+        type: "cloud_function",
+      },
+    });
+
+    process.env.ENTRY_METADATA = entryMetadata;
+
+    const options = {
+      reporterOptions: {
+        onlyConsole: true,
+        projectId: "my-project",
+        logName: "my-log",
       },
     };
 
