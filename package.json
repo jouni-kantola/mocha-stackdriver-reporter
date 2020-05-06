@@ -1,6 +1,6 @@
 {
   "name": "mocha-stackdriver-reporter",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Mocha reporter to log test results with Google Cloud Logging API",
   "main": "index.js",
   "author": "Jouni Kantola <jouni@kantola.se>",
