@@ -17,7 +17,7 @@ describe("StackdriverReporter", function () {
         onlyConsole: true,
         projectId: "my-project",
         logName: "my-log",
-        "entry-metadata": {
+        entryMetadata: {
           resource: {
             labels: {
               function_name: "my-cloud-function",
@@ -52,7 +52,7 @@ describe("StackdriverReporter", function () {
         onlyConsole: true,
         projectId: "my-project",
         logName: "my-log",
-        "entry-metadata": entryMetadata,
+        entryMetadata,
       },
     };
 
@@ -66,14 +66,14 @@ describe("StackdriverReporter", function () {
       reporterOptions: {
         projectId: "my-project",
         logName: "my-log",
-        "entry-metadata": 666,
+        entryMetadata: 666,
       },
     };
 
     const runner = new Mocha().run(done);
     assert.throws(
       () => new StackdriverReporter(runner, options),
-      /Reporter option 'entry-metadata' cannot be parsed to JSON/
+      /Reporter option 'entryMetadata' cannot be parsed to JSON/
     );
   });
 });
