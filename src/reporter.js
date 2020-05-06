@@ -14,7 +14,9 @@ function StackdriverReporter(runner, options = {}) {
   const { projectId, logName } = ensureOptions(reporterOptions);
 
   Mocha.reporters.Base.call(this, runner, options);
-  const log = new CloudLogger(projectId, logName);
+
+  const entryMetadata = getEntryMetadata(reporterOptions);
+  const log = new CloudLogger(projectId, logName, entryMetadata);
 
   const result = {
     passes: [],
@@ -36,8 +38,8 @@ function StackdriverReporter(runner, options = {}) {
         console.log("result", JSON.stringify(result));
 
       if (!reporterOptions.onlyConsole) {
-      if (result.failures.length > 0) log.error(result);
-      else log.info(result);
+        if (result.failures.length > 0) log.error(result);
+        else log.info(result);
       }
     });
 }
@@ -66,6 +68,24 @@ Example: --reporter-options projectId=myGcpProjectId,logName=myLog
   };
 }
 
+function getEntryMetadata(reporterOptions) {
+  if (!reporterOptions["entry-metadata"]) return undefined;
+
+  const entryMetadata = reporterOptions["entry-metadata"];
+
+  if (typeof entryMetadata === "string" || typeof entryMetadata === "object") {
+    if (typeof entryMetadata === "string") return JSON.parse(entryMetadata);
+    else return entryMetadata;
+  } else {
+    const errorMessage = `
+Reporter option 'entry-metadata' cannot be parsed to JSON.
+Please, specify metadata for entry as JSON or object literal.
+`;
+
+    console.error("Error:", errorMessage);
+    throw new Error(errorMessage);
+  }
+}
 
 Mocha.utils.inherits(StackdriverReporter, Mocha.reporters.Base);
 
