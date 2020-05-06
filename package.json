@@ -9,6 +9,11 @@
     "url": "https://github.com/jouni-kantola/mocha-stackdriver-reporter/issues"
   },
   "homepage": "https://github.com/jouni-kantola/mocha-stackdriver-reporter",
+  "keywords": [
+    "mocha",
+    "stackdriver",
+    "reporter"
+  ],
   "files": [
     "index.js",
     "src"
