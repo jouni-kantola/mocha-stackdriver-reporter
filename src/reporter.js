@@ -44,6 +44,10 @@ function StackdriverReporter(runner, options = {}) {
     });
 }
 
+Mocha.utils.inherits(StackdriverReporter, Mocha.reporters.Base);
+
+module.exports = StackdriverReporter;
+
 function ensureOptions(reporterOptions) {
   if (
     !reporterOptions ||
@@ -86,7 +90,3 @@ Please, specify metadata for entry as JSON or object literal.
     throw new Error(errorMessage);
   }
 }
-
-Mocha.utils.inherits(StackdriverReporter, Mocha.reporters.Base);
-
-module.exports = StackdriverReporter;
