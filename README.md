@@ -8,6 +8,12 @@ Mocha reporter using the Google Cloud Logging API.
 
 `npm install mocha-stackdriver-reporter --save-dev`
 
+## Options
+
+- `projectId`: Google Cloud Project ID.
+- `logName`: Log identifier; gets merged with `projectId` into e.g. `projects/test123/logs/my-function%2Fwith-name`. Note how last part is URL encoded. This is automatically taken care when using a `logName` with `/` in the name, e.g. `my-function/with-name`.
+- `entryMetadata`: Metadata for log entries.
+
 ## CLI
 
 Run mocha with reporter configured:
