@@ -73,9 +73,9 @@ Example: --reporter-options projectId=myGcpProjectId,logName=myLog
 }
 
 function getEntryMetadata(reporterOptions) {
-  if (!reporterOptions["entry-metadata"]) return undefined;
+  if (!reporterOptions.entryMetadata) return undefined;
 
-  const entryMetadata = reporterOptions["entry-metadata"];
+  const entryMetadata = reporterOptions.entryMetadata;
 
   if (typeof entryMetadata === "string") {
     return JSON.parse(entryMetadata);
@@ -83,7 +83,7 @@ function getEntryMetadata(reporterOptions) {
     return entryMetadata;
   } else {
     const errorMessage = `
-Reporter option 'entry-metadata' cannot be parsed to JSON.
+Reporter option 'entryMetadata' cannot be parsed to JSON.
 Please, specify metadata for entry as JSON or object literal.
 `;
 
