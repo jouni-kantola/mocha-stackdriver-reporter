@@ -6,7 +6,7 @@ Mocha reporter using the Google Cloud Logging API.
 
 ## Install
 
-`npm install mocha-stackdriver-reporter --save-dev`
+`npm install mocha-stackdriver-reporter`
 
 ## Options
 
