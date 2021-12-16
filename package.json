@@ -25,7 +25,7 @@
     "@google-cloud/logging": "^9.1.0"
   },
   "peerDependencies": {
-    "mocha": "^8"
+    "mocha": ">=8"
   },
   "engines": {
     "node": ">= 10.12.0"
